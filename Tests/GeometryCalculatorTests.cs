@@ -9,12 +9,20 @@ namespace Tests
         public void CircleAreaCalculation()
         {
             double radius = 5.0;
-            double expectedArea = Math.PI * radius * radius;
+            double expectedArea = Math.Round(Math.PI * radius * radius, 3);
 
             var circle = new Circle(radius);
             double actualArea = circle.CalculateArea();
 
             Assert.AreEqual(expectedArea, actualArea);
+        }
+
+        [Test]
+        public void CircleAreaCalculation_NegativeRadius()
+        {
+            double radius = -5.0;
+
+            Assert.Throws<ArgumentException>(() => new Circle(radius));
         }
 
         [Test]
