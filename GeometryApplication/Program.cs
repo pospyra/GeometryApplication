@@ -1,5 +1,4 @@
 ﻿using GeometryLibrary.Figures;
-using GeometryLibrary.Interfaces;
 
 namespace GeometryApplication
 {
@@ -7,24 +6,65 @@ namespace GeometryApplication
     {
         static void Main(string[] args)
         {
-            double radius = 5.0;
-            double side1 = 3.0;
-            double side2 = 4.0;
-            double side3 = 5.0;
+            while (true) // Цикл для повторного запуска программы
+            {
+                PrintMenu();
+                int choice = GetChoice();
+                switch (choice)
+                {
+                    case 1:
+                        CalculateCircleArea();
+                        break;
+                    case 2:
+                        CalculateTriangleArea();
+                        break;
+                    case 3:
+                        Console.WriteLine("Программа завершена.");
+                        return;
+                    default:
+                        Console.WriteLine("Неверный ввод. Пожалуйста, выберите опцию от 1 до 3:");
+                        break;
+                }
+            }
+        }
 
-            var circle = new Circle(radius);
-            var triangle = new Triangle(side1, side2, side3);
+        static void PrintMenu()
+        {
+            Console.WriteLine("Выберите фигуру для вычисления площади:");
+            Console.WriteLine("1. Круг");
+            Console.WriteLine("2. Треугольник");
+            Console.WriteLine("3. Выйти");
+        }
 
-            double circleArea = circle.CalculateArea();
-            double triangleArea = triangle.CalculateArea();
+        static int GetChoice()
+        {
+            int choice;
+            while (!int.TryParse(Console.ReadLine(), out choice) || choice < 1 || choice > 3)
+            {
+                Console.WriteLine("Неверный ввод. Пожалуйста, выберите опцию от 1 до 3:");
+            }
+            return choice;
+        }
 
-            bool isRightTriangle = triangle.IsRightTriangle();
+        static void CalculateCircleArea()
+        {
+            Console.Write("Введите радиус круга: ");
+            double radius = double.Parse(Console.ReadLine());
+            Circle circle = new Circle(radius);
+            double area = circle.CalculateArea();
+            Console.WriteLine($"Площадь круга равна {area}");
+        }
 
-            Console.WriteLine($"Площадь круга с радиусом {radius} равна {circleArea}" );
-            Console.WriteLine($"Площадь треугольника со сторонами {side1}, {side2} и {side3} равна {triangleArea}" );
-            Console.WriteLine("Треугольник {0} прямоугольный", isRightTriangle ? "является" : "не является");
-
-            Console.ReadLine();
+        static void CalculateTriangleArea()
+        {
+            Console.Write("Введите длины сторон треугольника (через пробел): ");
+            string[] sides = Console.ReadLine().Split(' ');
+            double side1 = double.Parse(sides[0]);
+            double side2 = double.Parse(sides[1]);
+            double side3 = double.Parse(sides[2]);
+            Triangle triangle = new Triangle(side1, side2, side3);
+            double area = triangle.CalculateArea();
+            Console.WriteLine($"Площадь треугольника равна {area}");
         }
     }
 }
