@@ -1,4 +1,4 @@
-﻿using GeometryLibrary.Interfaces;
+﻿using GeometryLibrary.Figures.Base;
 
 namespace GeometryLibrary.Figures
 {
@@ -25,7 +25,8 @@ namespace GeometryLibrary.Figures
         public override double CalculateArea()
         {
             double p = (Side1 + Side2 + Side3) / 2;
-            return Math.Sqrt(p * (p - Side1) * (p - Side2) * (p - Side3));
+            var area = Math.Sqrt(p * (p - Side1) * (p - Side2) * (p - Side3));
+            return Math.Round(area, 3);
         }
     }
 }

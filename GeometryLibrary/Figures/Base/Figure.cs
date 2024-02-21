@@ -1,4 +1,4 @@
-﻿namespace GeometryLibrary.Interfaces
+﻿namespace GeometryLibrary.Figures.Base
 {
     public abstract class Figure
     {

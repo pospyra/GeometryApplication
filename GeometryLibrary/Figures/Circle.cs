@@ -1,4 +1,4 @@
-﻿using GeometryLibrary.Interfaces;
+﻿using GeometryLibrary.Figures.Base;
 
 namespace GeometryLibrary.Figures
 {
