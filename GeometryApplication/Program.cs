@@ -65,6 +65,16 @@ namespace GeometryApplication
             Triangle triangle = new Triangle(side1, side2, side3);
             double area = triangle.CalculateArea();
             Console.WriteLine($"Площадь треугольника равна {area}");
+
+            if (triangle.IsRightTriangle())
+            {
+                Console.WriteLine("Треугольник является прямоугольным.");
+            }
+            else
+            {
+                Console.WriteLine("Треугольник не является прямоугольным.");
+            }
         }
+
     }
 }
